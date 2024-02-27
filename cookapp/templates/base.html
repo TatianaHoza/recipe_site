@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сайт рецептов</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+
+<body >
+    {% block mainmenu %}
+    <div class="header">
+        <a class="nav_link" href="{% url 'cookapp:index' %}">Главная страница</a>
+        <a class="nav_link" href="{% url 'cookapp:one_recipe' %}">Один из рецептов</a>
+
+
+        {% if user.is_authenticated %}
+            <a class="nav_link" href="{% url 'cookapp:add_recipe' %}">Добавить свой рецепт</a>
+            <a class="nav_link" href="{% url 'cookapp:author_recipes' user.pk %}">{{user.username}}</a>
+        {% endif %}
+
+        <div width="200">
+            {% if not user.is_authenticated %}<a class="nav_link" href="{% url 'register' %}">  Регистрация </a>  | <a class="nav_link" href="{% url 'login' %}">  Вход </a>  {% else %} <a class="nav_link">  Выход  </a>{% endif %}</div>
+    </div>
+    {% endblock %}
+
+    {% block content %} {% endblock %}
+</body>
+</html>
