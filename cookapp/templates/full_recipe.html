@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ recipe.title }} {% endblock %} 
+
+{% block content %}
+    <div class="full_recipe_card">
+        <h1>{{ recipe.title}}</h1>
+        <img src="{{ MEDIA_URL }}{{recipe.image.url}}" width="900" height="550" alt="фото">
+        <h4>{{ recipe.description }}</h4>
+
+        <h3>Время приготовления ~ {{ recipe.time }}</h3>
+
+
+        <div style="width: 80%;"><p>{{ recipe.steps }}</p></div>
+
+
+        <h4>{{ recipe.author }}</h4>
+
+        {% if recipe.author == user %}
+            <a href="{% url 'edit_recipe' recipe_id=recipe.pk %}">Изменить рецепт</a>
+        {% endif %}
+    </div>
+
+{% endblock %}
