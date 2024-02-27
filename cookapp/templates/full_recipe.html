@@ -17,7 +17,7 @@
         <h4>{{ recipe.author }}</h4>
 
         {% if recipe.author == user %}
-            <a href="{% url 'edit_recipe' recipe_id=recipe.pk %}">Изменить рецепт</a>
+            <a href="{% url 'cookapp:edit_recipe' recipe_id=recipe.pk %}">Изменить рецепт</a>
         {% endif %}
     </div>
 
